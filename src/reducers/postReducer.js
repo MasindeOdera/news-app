@@ -1,7 +1,7 @@
-import { FETCH_POSTS } from '../actions/types';
+import { FETCH_NEWS, SEARCH_NEWS } from '../actions/types';
 
 const initialState = {
-    // query: '',
+    query: '',
     items: [],
     item: {},
     loading: false,
@@ -9,16 +9,18 @@ const initialState = {
 }
 
 export default function (state = initialState, action) {
-    // if (typeof state === 'undefined') {
-    //     return initialState
-    // }
-
     switch(action.type) {
-        case FETCH_POSTS:
+        case FETCH_NEWS:
             return {
                 ...state,
                 items: action.payload,
-                // query: query,
+                loading: false 
+            };
+        case SEARCH_NEWS:
+            return {
+                ...state,
+                // items: action.payload,
+                query: action.payload,
                 loading: false 
             };
         default:

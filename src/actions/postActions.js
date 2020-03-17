@@ -1,14 +1,14 @@
-import { FETCH_POSTS } from './types';
+import { FETCH_NEWS, SEARCH_NEWS } from './types';
 
-export const fetchPosts = () => dispatch => {
+export const fetchNews = () => dispatch => {
     //Created currentDate to be able to still get the latest data with my developer's plan at News API.
-    var date;
-    var month;
-    var zero = "0";
-    var d = new Date();
-    var year = d.getFullYear().toString();
-    var initialMonth = d.getMonth().toString();
-    var initialDay = d.getDate().toString();
+    let date;
+    let month;
+    let zero = "0";
+    let d = new Date();
+    let year = d.getFullYear().toString();
+    let initialMonth = d.getMonth().toString();
+    let initialDay = d.getDate().toString();
 
     if(initialMonth.length > 1){
         month = zero.concat(initialMonth);
@@ -24,21 +24,27 @@ export const fetchPosts = () => dispatch => {
         date = initialDay;
     }
 
-    var currentDate = year.concat("-",month,"-",date,"&");
+    let currentDate = year.concat("-",month,"-",date,"&");
 
-    var search = 'Apple&';
+    let search = 'Apple&';
 
-    var url = 'https://newsapi.org/v2/everything?' +
+    let url = 'https://newsapi.org/v2/everything?' +
             'q=' + search +
             'from=' + currentDate +
             'sortBy=popularity&' +
             'apiKey=cc9b54067d074fc88253847971a703eb';
-    var req = new Request(url);
+    const req = new Request(url);
     fetch(req)
         .then(res => res.json())
         .then(news => dispatch({
-            type: FETCH_POSTS,
+            type: FETCH_NEWS,
             payload: news.articles,
-            // query: query
         }));
+};
+
+export const searchNews = query => dispatch => {
+    dispatch({
+        type: SEARCH_NEWS,
+        payload: query
+    })
 };

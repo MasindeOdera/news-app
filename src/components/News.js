@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions/postActions';
+import { fetchNews, searchNews } from '../actions/postActions';
 import '../App.css';
 
 class News extends Component {
@@ -38,8 +38,8 @@ class News extends Component {
     
     handleChange(e) {
         e.preventDefault();
-        this.setState({ query: e.target.value });
-        // this.props.fetchPosts(e.target.value);
+        // this.setState({ query: e.target.value });
+        this.props.searchNews(e.target.value);
 
         // let updatedNews =  this.props.news.filter(function(article) {
         //     console.log("Query/Search: " + this.state.query, "Title: " + article.title);
@@ -60,32 +60,17 @@ class News extends Component {
         // console.log("after also, but looking for news data to filter through: ", this.state.news);
         console.log("after also, but looking for news data to filter through: ", this.props.news);
 
-        // let updatedNews = this.props.news.filter(this.props.articles, article => article.title.includes(e.target.value.toLowerCase()));
-        // let updatedNews = this.props.news.filter(this.props.articles, article => article.title.includes(e.target.value.toLowerCase()));
         this.setState({ query: e.target.value });
         console.log("before possible state change: ", this.state.query);
-        // let updatedNews =  this.props.news.map(function(article, index) {
-        //     return article.title === this.props.query.toLowerCase();
-        // });
-
-        // this.setState({
-        //     query: e.target.value,
-        //     news: updatedNews,
-        // });
     }
 
     UNSAFE_componentWillMount() {
-        this.props.fetchPosts();
+        this.props.fetchNews();
         this.setState({news: this.props.articles});
     }
 
-    // componentDidMount() {
-    //     this.props.fetchPosts();
-    //     this.setState({news: this.props.articles});
-    // }
-
     render() {
-        console.log("After Render news & query: ", this.props.news, "& ", this.state.query);
+        console.log("After Render news & query: ", this.props.news);
         let newsArticles = this.props.news.map((article, index) => (
             <div key={index} style={border} className="Card">
                 <div style={clearfix}>
@@ -181,13 +166,15 @@ const clearfix = {
 }
 
 News.prototypes = {
-    fetchPosts: PropTypes.func.isRequired,
+    fetchNews: PropTypes.func.isRequired,
+    searchNews: PropTypes.func.isRequired,
     news: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
     news: state.news.items,
-    query: state.query,
+    query: state.news.query,
+    // query: state.query,
 });
 
-export default connect(mapStateToProps, { fetchPosts })(News);
+export default connect(mapStateToProps, { fetchNews, searchNews })(News);
