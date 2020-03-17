@@ -27,47 +27,66 @@ class News extends Component {
     // }
 
     constructor(props) {
-        super(props)
-        this.state = { search: '' }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        super(props);
+        this.state = { 
+            query: this.query,
+            news: this.props.news,
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
     handleChange(e) {
         e.preventDefault();
-        this.setState({ search: e.target.value });
+        this.setState({ query: e.target.value });
+        // this.props.fetchPosts(e.target.value);
+
+        // let updatedNews =  this.props.news.filter(function(article) {
+        //     console.log("Query/Search: " + this.state.query, "Title: " + article.title);
+        //     return article.title === this.state.query.toLowerCase();
+        //     // return article.title === e.target.value.toLowerCase();
+        // });
+
+        // this.setState({
+        //     query: e.target.value,
+        //     news: updatedNews,
+        // });
     }
     
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state.search);
-        this.componentDidMount();
         this.setState({news: this.props.articles});
-        console.log("after this.props.fetchPosts: ", this.state.search);
-        console.log("after also, but looking for news data to filter through: ", this.state.news);
-        // this.setState({ search: this.state.search});
-        // this.state.news.filter(this.state.search);
-        // this.setState({news: this.props.articles.filter(this.state.search)});
-        this.props.news.filter(this.state.search);
+        console.log("after this.props.fetchPosts: ", this.state.query);
+        // console.log("after also, but looking for news data to filter through: ", this.state.news);
+        console.log("after also, but looking for news data to filter through: ", this.props.news);
+
+        // let updatedNews = this.props.news.filter(this.props.articles, article => article.title.includes(e.target.value.toLowerCase()));
+        // let updatedNews = this.props.news.filter(this.props.articles, article => article.title.includes(e.target.value.toLowerCase()));
+        this.setState({ query: e.target.value });
+        console.log("before possible state change: ", this.state.query);
+        // let updatedNews =  this.props.news.map(function(article, index) {
+        //     return article.title === this.props.query.toLowerCase();
+        // });
+
+        // this.setState({
+        //     query: e.target.value,
+        //     news: updatedNews,
+        // });
     }
 
-    // UNSAFE_componentWillMount() {
-    //     this.props.fetchPosts();
-    //     this.setState({news: this.props.articles});
-    //     this.setState({ search: this.state.search});
-    // }
-
-    componentDidMount() {
+    UNSAFE_componentWillMount() {
         this.props.fetchPosts();
         this.setState({news: this.props.articles});
-        // this.setState({ search: this.state.search});
     }
 
+    // componentDidMount() {
+    //     this.props.fetchPosts();
+    //     this.setState({news: this.props.articles});
+    // }
+
     render() {
-        console.log("After Render: ", this.props.news);
-        console.log("After Render, filter?: ", this.state.search);
-        // const submittedSearch = this.state.search;
-        const newsArticles = this.props.news.map((article, index) => (
+        console.log("After Render news & query: ", this.props.news, "& ", this.state.query);
+        let newsArticles = this.props.news.map((article, index) => (
             <div key={index} style={border} className="Card">
                 <div style={clearfix}>
                 <img src={article.urlToImage} alt="img" style={articleImage} />
@@ -77,23 +96,17 @@ class News extends Component {
                 </div>
             </div>
         ));
-        if(this.state.search) {
-            console.log("Printing this if there is a search query to filter on: ", this.state.search);
-            // var testing = this.props.news.filter(this.state.search);
-            // console.log(testing);
-            // newsArticlesFiltered = this.props.news.filter(this.state.search).map((article, index) => (
-            //     <div key={index} style={border} className="Card">
-            //         <div style={clearfix}>
-            //         <img src={article.urlToImage} alt="img" style={articleImage} />
-            //         <h3>{article.title}</h3>
-            //         <h3 style={articleAuthor}>- {article.author}</h3>
-            //         <p style={articleDescriton}>{article.description}</p>
-            //         </div>
-            //     </div>
-            // ));
+
+        if(this.state.query) {
+            // console.log("Printing this if there is a search query to filter on: ", this.state.query);
+            // let searchedArticle = newsArticles.filter(function (article) {
+            //     return article.title === this.state.query;
+            //   });
+            // let newsArticles = this.props.news.map((article, index) => (article.title));
+            // console.log(newsArticles);
             
-        }
-        // const newsArticlesFiltered = newsArticles.filter(this.state.search);
+        };
+
         return (
             <div>
                 <form style={{ display: 'flex' }} onSubmit={this.handleSubmit}>
@@ -102,7 +115,7 @@ class News extends Component {
                         name="title" 
                         placeholder="Search for news article..." 
                         style={{flex: '10', padding: '5px'}}
-                        value = {this.state.search}
+                        value = {this.state.query}
                         onChange = {this.handleChange}
                     />
                     <input
@@ -114,7 +127,6 @@ class News extends Component {
                 </form>
                 <div style={articleStyle}>
                     {newsArticles}
-                    {/*{!this.state.search ? (newsArticles) : (newsArticlesFiltered)}*/}
                 </div>
             </div>
         )
@@ -175,14 +187,7 @@ News.prototypes = {
 
 const mapStateToProps = state => ({
     news: state.news.items,
-    search: state.search
+    query: state.query,
 });
-
-// function mapStateToProps(state) {
-//     const { items, search } = state.searchSimple;
-//     return {
-//         filteredItems: items.filter((item) => item.startsWith(search))
-//     };
-// }
 
 export default connect(mapStateToProps, { fetchPosts })(News);

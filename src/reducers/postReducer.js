@@ -1,27 +1,25 @@
-import { FETCH_POSTS, NEW_POST } from '../actions/types';
+import { FETCH_POSTS } from '../actions/types';
 
 const initialState = {
-    search: '',
+    // query: '',
     items: [],
-    item: {}
+    item: {},
+    loading: false,
+
 }
 
 export default function (state = initialState, action) {
+    // if (typeof state === 'undefined') {
+    //     return initialState
+    // }
+
     switch(action.type) {
         case FETCH_POSTS:
-            console.log("In postReducers.js before return state: ", {...state});
             return {
                 ...state,
                 items: action.payload,
-                // search: action.payload.filter()
-            };
-            // return Object.assign({}, ...state, {
-            //     search: action.payload
-            // });
-        case NEW_POST:
-            return {
-                ...state,
-                items: action.payload
+                // query: query,
+                loading: false 
             };
         default:
             return state;

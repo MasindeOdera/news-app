@@ -26,10 +26,10 @@ export const fetchPosts = () => dispatch => {
 
     var currentDate = year.concat("-",month,"-",date,"&");
 
-    var query = 'Apple&';
+    var search = 'Apple&';
 
     var url = 'https://newsapi.org/v2/everything?' +
-            'q=' + query +
+            'q=' + search +
             'from=' + currentDate +
             'sortBy=popularity&' +
             'apiKey=cc9b54067d074fc88253847971a703eb';
@@ -38,22 +38,7 @@ export const fetchPosts = () => dispatch => {
         .then(res => res.json())
         .then(news => dispatch({
             type: FETCH_POSTS,
-            payload: news.articles
+            payload: news.articles,
+            // query: query
         }));
 };
-
-// export const searchPosts = () => dispatch => {
-//     console.log('search called');
-//     var url = 'https://newsapi.org/v2/everything?' +
-//             'q=Apple&' +
-//             'from=2020-02-21&' +
-//             'sortBy=popularity&' +
-//             'apiKey=cc9b54067d074fc88253847971a703eb';
-//     var req = new Request(url);
-//     fetch(req)
-//         .then((res) => res.json())
-//         .then(news => dispatch({
-//             type: NEW_POST,
-//             payload: news
-//         }));
-// }
