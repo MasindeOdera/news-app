@@ -12,6 +12,7 @@ const store = createStore(
     compose(
         applyMiddleware(...middleware),
         // window.__REDUX_DEVTOOLS_EXTENSION__&& window.__REDUX_DEVTOOLS_EXTENSION__()
+        // The above line had to be commented out in order to use dev tools without issues on tablet/phone
         window.__REDUX_DEVTOOLS_EXTENSION__
         ? window.__REDUX_DEVTOOLS_EXTENSION__()
         : f => f
