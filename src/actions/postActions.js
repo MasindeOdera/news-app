@@ -2,27 +2,14 @@ import { SHOW_NEWS, FETCH_NEWS, SEARCH_NEWS } from './types';
 
 export const showNews = () => dispatch => {
     //Created currentDate to be able to still get the latest data with my developer's plan at News API.
-    let date;
-    let month;
     let zero = "0";
     let d = new Date();
     let year = d.getFullYear().toString();
     let initialMonth = d.getMonth().toString();
     let initialDay = d.getDate().toString();
 
-    if(initialMonth.length > 1){
-        month = zero.concat(initialMonth);
-    }
-    else {
-        month = initialMonth;
-    }
-
-    if(initialDay.length > 1){
-        date = zero.concat(initialDay);
-    }
-    else {
-        date = initialDay;
-    }
+    let month = (initialMonth.length > 1) ? zero.concat(initialMonth) : initialMonth;
+    let date = (initialDay.length > 1) ? zero.concat(initialDay) : initialDay;
 
     let currentDate = year.concat("-",month,"-",date,"&");
 
@@ -48,27 +35,14 @@ export const searchNews = query => dispatch => {
 };
 
 export const fetchNews = query => dispatch => {
-    let date;
-    let month;
     let zero = "0";
     let d = new Date();
     let year = d.getFullYear().toString();
     let initialMonth = d.getMonth().toString();
     let initialDay = d.getDate().toString();
 
-    if(initialMonth.length > 1){
-        month = zero.concat(initialMonth);
-    }
-    else {
-        month = initialMonth;
-    }
-
-    if(initialDay.length > 1){
-        date = zero.concat(initialDay);
-    }
-    else {
-        date = initialDay;
-    }
+    let month = (initialMonth.length > 1) ? zero.concat(initialMonth) : initialMonth;
+    let date = (initialDay.length > 1) ? zero.concat(initialDay) : initialDay;
 
     let currentDate = year.concat("-",month,"-",date,"&");
 

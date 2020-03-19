@@ -36,8 +36,8 @@ class News extends Component {
             <div key={index} style={border} className="Card">
                 <div style={clearfix}>
                 <img src={article.urlToImage} alt="img" style={articleImage} />
-                <h3>{article.title}</h3>
-                <h3 style={articleAuthor}>- {article.author}</h3>
+                <h3 style={{font: '2.4rem',}}>{article.title}</h3>
+                <h4 style={articleAuthor}>- {article.author}</h4>
                 <p style={articleDescriton}>{article.description}</p>
                 </div>
             </div>
@@ -70,8 +70,20 @@ class News extends Component {
 }
 
 const border = {
-    padding: '2rem 0',
+    padding: '1.2rem 10px',
     marginTop: '20px',
+}
+
+const clearfix = {
+    color: '#222',
+    fontWeight: '500',
+    textTransform: 'capitalize',
+    fontSize: '1.1rem',
+    textAlign: 'left',
+    cursor:'pointer',
+    height: '50vmin',
+    padding: '0.2rem',
+    marginTop: '-20px',
 }
 
 const articleStyle = {
@@ -103,17 +115,6 @@ const articleDescriton = {
     width: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-}
-
-const clearfix = {
-    color: '#222',
-    fontWeight: '700',
-    textTransform: 'capitalize',
-    fontSize: '1.1rem',
-    textAlign: 'left',
-    cursor:'pointer',
-    height: '320px',
-    padding: '1rem',
 }
 
 News.prototypes = {
