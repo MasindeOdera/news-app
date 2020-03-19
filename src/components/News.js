@@ -23,7 +23,7 @@ class News extends Component {
             <div key={index} style={border} className="Card">
                 <div style={clearfix}>
                 <img src={article.urlToImage} alt="img" style={articleImage} />
-                <h3 style={{font: '2.4rem',}}>{article.title}</h3>
+                <h3 style={{fontSize: '0.86rem',}}>{article.title}</h3>
                 <h4 style={articleAuthor}>- {article.author}</h4>
                 <p style={articleDescriton}>{article.description}</p>
                 </div>
