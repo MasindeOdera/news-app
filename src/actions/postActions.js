@@ -16,7 +16,6 @@ export const showNews = () => dispatch => {
     let query = 'Apple&';
 
     let url = `https://newsapi.org/v2/everything?q=${query}from=${currentDate}sortBy=popularity&apiKey=cc9b54067d074fc88253847971a703eb`;
-    console.log(query);
     const req = new Request(url);
     fetch(req)
         .then(res => res.json())

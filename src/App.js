@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import News from './components/News';
-// import SearchBar from './components/SearchBar';
+import SearchBar from './components/SearchBar';
 import './App.css';
 import { Provider } from 'react-redux';
 
@@ -12,7 +12,7 @@ class App extends Component {
       <Provider store={store}>
         <div className="App">
           <h2>News API</h2>
-          {/*<SearchBar />*/}
+          <SearchBar />
           <News />
         </div>
       </Provider>
