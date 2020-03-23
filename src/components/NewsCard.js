@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { showNews } from '../actions/postActions';
-// import Spinner from './Spinner';
+import {Link} from 'react-router-dom';
+// import News from './News';
+// import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
+// import { showNews } from '../actions/postActions';
 
 export class NewsCard extends Component {
     render() {
@@ -11,12 +12,14 @@ export class NewsCard extends Component {
         return (
             <div style={articleStyle}>
                 <div style={border} className="Card">
-                    <div style={clearfix}>
-                    <img src={article.urlToImage} alt="img" style={articleImage} />
-                    <h3 style={{fontSize: '0.86rem',}}>{article.title}</h3>
-                    <h4 style={articleAuthor}>- {article.author}</h4>
-                    <p style={articleDescriton}>{article.description}</p>
-                    </div>
+                    <Link to={'/news/' + article.title}>
+                        <div style={clearfix}>
+                        <img src={article.urlToImage} alt="img" style={articleImage} />
+                        <h3 style={{fontSize: '0.86rem',}}>{article.title}</h3>
+                        <h4 style={articleAuthor}>- {article.author}</h4>
+                        <p style={articleDescriton}>{article.description}</p>
+                        </div>
+                    </Link>
                 </div>
             </div>
         )
@@ -44,7 +47,6 @@ const clearfix = {
     textTransform: 'capitalize',
     fontSize: '1.1rem',
     textAlign: 'left',
-    cursor:'pointer',
     height: '310px',
     padding: '0.2rem',
     marginTop: '-20px',
@@ -71,14 +73,14 @@ const articleDescriton = {
     textOverflow: 'ellipsis',
 }
 
-NewsCard.prototypes = {
-    showNews: PropTypes.func.isRequired,
-    news: PropTypes.array.isRequired
-}
+// NewsCard.prototypes = {
+//     showNews: PropTypes.func.isRequired,
+//     news: PropTypes.array.isRequired
+// }
 
-const mapStateToProps = state => ({
-    news: state.news.items,
-    loading: state.news.loading,
-});
+// const mapStateToProps = state => ({
+//     news: state.news.items,
+// });
 
-export default connect(mapStateToProps, { showNews })(NewsCard);
+// export default connect(mapStateToProps, { showNews })(NewsCard);
+export default NewsCard;

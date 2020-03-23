@@ -4,7 +4,7 @@ const initialState = {
     query: '',
     items: [],
     item: {},
-    loading: false,
+    loading: true,
 }
 
 export default function (state = initialState, action) {
@@ -20,7 +20,7 @@ export default function (state = initialState, action) {
                 ...state,
                 items: state.items,
                 query: state.query,
-                // loading: false 
+                loading: false 
             };
         case SEARCH_NEWS:
             return {

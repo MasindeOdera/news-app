@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import NewsCard from './NewsCard';
+import Spinner from './Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { showNews } from '../actions/postActions';
+import {HashRouter as Router} from 'react-router-dom';
 import '../App.css';
 
 class News extends Component {
@@ -19,20 +21,20 @@ class News extends Component {
     }
 
     render() {
-        // const {loading} = this.props;
+        const {loading} = this.props;
         const {news} = this.props;
         let content = '';
 
         content = news.length > 0 ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
-        // console.log("Deconstructed news: ", news);
-        // console.log("After Render news & query: ", news, this.props, this.props.query);
 
         return (
-            <div>
-                <div style={articleStyle}>
-                    {content}
+            <Router>
+                <div>
+                    <div style={articleStyle}>
+                        {loading ? <Spinner /> : content}
+                    </div>
                 </div>
-            </div>
+            </Router>
         )
     }
 }
