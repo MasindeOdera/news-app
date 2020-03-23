@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NewsCard from './NewsCard';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { showNews } from '../actions/postActions';
@@ -18,43 +19,22 @@ class News extends Component {
     }
 
     render() {
-        console.log("After Render news & query: ", this.props.news, this.props, this.props.query);
-        let newsArticles = this.props.news.map((article, index) => (
-            <div key={index} style={border} className="Card">
-                <div style={clearfix}>
-                <img src={article.urlToImage} alt="img" style={articleImage} />
-                <h3 style={{fontSize: '0.86rem',}}>{article.title}</h3>
-                <h4 style={articleAuthor}>- {article.author}</h4>
-                <p style={articleDescriton}>{article.description}</p>
-                </div>
-            </div>
-        ));
+        // const {loading} = this.props;
+        const {news} = this.props;
+        let content = '';
+
+        content = news.length > 0 ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
+        // console.log("Deconstructed news: ", news);
+        // console.log("After Render news & query: ", news, this.props, this.props.query);
 
         return (
             <div>
                 <div style={articleStyle}>
-                    {newsArticles}
+                    {content}
                 </div>
             </div>
         )
     }
-}
-
-const border = {
-    padding: '1.2rem 10px',
-    marginTop: '20px',
-}
-
-const clearfix = {
-    color: '#222',
-    fontWeight: '500',
-    textTransform: 'capitalize',
-    fontSize: '1.1rem',
-    textAlign: 'left',
-    cursor:'pointer',
-    height: '320px',
-    padding: '0.2rem',
-    marginTop: '-20px',
 }
 
 const articleStyle = {
@@ -67,27 +47,6 @@ const articleStyle = {
     margin: 'auto',
 }
 
-const articleImage = {
-    width: '100%',
-    height: '10rem',
-    objectFit: 'cover',
-}
-
-const articleAuthor = {
-    margin: '2px',
-    whiteSpace: 'nowrap',
-    width: '100%',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-}
-
-const articleDescriton = {
-    whiteSpace: 'nowrap',
-    width: '100%',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-}
-
 News.prototypes = {
     showNews: PropTypes.func.isRequired,
     news: PropTypes.array.isRequired
@@ -95,6 +54,7 @@ News.prototypes = {
 
 const mapStateToProps = state => ({
     news: state.news.items,
+    loading: state.news.loading,
 });
 
 export default connect(mapStateToProps, { showNews })(News);
