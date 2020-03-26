@@ -8,11 +8,12 @@ import {Link} from 'react-router-dom';
 export class NewsCard extends Component {
     render() {
         const {article} = this.props;
+
         
         return (
             <div style={articleStyle}>
                 <div style={border} className="Card">
-                    <Link to={'/news/' + article.title}>
+                    <Link to={"/news/" + article.title}>
                         <div style={clearfix}>
                         <img src={article.urlToImage} alt="img" style={articleImage} />
                         <h3 style={{fontSize: '0.86rem',}}>{article.title}</h3>

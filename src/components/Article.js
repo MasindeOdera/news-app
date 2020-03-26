@@ -1,7 +1,43 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchArticle } from '../actions/postActions';
+import PropTypes from 'prop-types';
 
 export class Article extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            article: this.props.article,
+        };
+    }
+
+    UNSAFE_componentWillMount() {
+        let a = this.props.news;
+        let idToSearch = this.props.match.params.id;
+          
+        function b(idToSearch) {
+            return a.filter(item => {
+                return item.title === idToSearch
+            })
+        };
+        
+        const test = b(idToSearch);
+        console.log("test, but hopefully article object: ", test[0]);
+        this.props.fetchArticle(this.props.article);
+        this.props.fetchArticle(test[0]);
+        this.setState({article: test[0]});
+    }
+
+    componentDidMount() {
+        console.log("this.props: ", this.props);
+        console.log(this.props.news);
+        console.log(this.state.article);
+
+    }
     render() {
+        const {article} = this.props;
+        console.log(this.state.article);
+
         return (
             <React.Fragment>
                 <div style={border} className="Card">
@@ -54,4 +90,16 @@ const articleDescriton = {
     textOverflow: 'ellipsis',
 }
 
-export default Article;
+Article.prototypes = {
+    fetchArticle: PropTypes.func.isRequired,
+    news: PropTypes.array.isRequired,
+    article: PropTypes.array.isRequired
+}
+
+const mapStateToProps = state => ({
+    loading: state.news.loading,
+    news: state.news.items,
+    article: state.news.article,
+});
+
+export default connect(mapStateToProps, { fetchArticle })(Article);
