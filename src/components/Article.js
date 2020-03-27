@@ -22,30 +22,21 @@ export class Article extends Component {
         };
         
         const test = b(idToSearch);
-        console.log("test, but hopefully article object: ", test[0]);
-        this.props.fetchArticle(this.props.article);
         this.props.fetchArticle(test[0]);
         this.setState({article: test[0]});
     }
 
-    componentDidMount() {
-        console.log("this.props: ", this.props);
-        console.log(this.props.news);
-        console.log(this.state.article);
-
-    }
     render() {
         const {article} = this.props;
-        console.log(this.state.article);
 
         return (
             <React.Fragment>
                 <div style={border} className="Card">
                     <div style={clearfix}>
                     <img src={article.urlToImage} alt="img" style={articleImage} />
-                    <h3 style={{fontSize: '0.86rem',}}>{article.title}</h3>
+                    <h3>{article.title}</h3>
                     <h4 style={articleAuthor}>- {article.author}</h4>
-                    <p style={articleDescriton}>{article.description}</p>
+                    <p style={articleContent}>{article.content}</p>
                     </div>
                 </div>
             </React.Fragment>
@@ -56,6 +47,7 @@ export class Article extends Component {
 const border = {
     padding: '1.2rem 10px',
     marginTop: '20px',
+    height: 'auto',
 }
 
 const clearfix = {
@@ -64,30 +56,25 @@ const clearfix = {
     textTransform: 'capitalize',
     fontSize: '1.1rem',
     textAlign: 'left',
-    height: '310px',
+    // height: '310px',
     padding: '0.2rem',
     marginTop: '-20px',
+    height: 'inherit',
 }
 
 const articleImage = {
     width: '100%',
-    height: '10rem',
+    height: '14rem',
     objectFit: 'cover',
 }
 
 const articleAuthor = {
     margin: '2px',
-    whiteSpace: 'nowrap',
     width: '100%',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
 }
 
-const articleDescriton = {
-    whiteSpace: 'nowrap',
-    width: '100%',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
+const articleContent = {
+    width: '80%',
 }
 
 Article.prototypes = {
