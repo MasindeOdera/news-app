@@ -3,6 +3,8 @@ import Spinner from './Spinner';
 import { connect } from 'react-redux';
 import { fetchArticle, setLoading } from '../actions/postActions';
 import PropTypes from 'prop-types';
+import '../App.css';
+import { Link } from 'react-router-dom';
 
 export class Article extends Component {
     constructor(props) {
@@ -35,6 +37,11 @@ export class Article extends Component {
     render() {
         const {article, loading} = this.props;
         console.log(this.props);
+
+        function openTab() {
+            window.open(article.url);
+          };
+
         let articleInfo = (
             <React.Fragment>
                 <div style={border} className="Card">
@@ -43,6 +50,14 @@ export class Article extends Component {
                         <h3>{article.title}</h3>
                         <h4 style={articleAuthor}>- {article.author}</h4>
                         <p style={articleContent}>{article.content}</p>
+                        <Link onClick={openTab}>
+                            <input 
+                                type="submit" 
+                                value="Original Article" 
+                                className="btn" 
+                                style={{flex: '1', fontSize: '8', marginTop: '10px'}}
+                            />
+                        </Link>
                     </div>
                 </div>
             </React.Fragment>);
