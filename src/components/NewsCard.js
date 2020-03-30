@@ -9,7 +9,6 @@ export class NewsCard extends Component {
     render() {
         const {article} = this.props;
 
-        
         return (
             <div style={articleStyle}>
                 <div style={border} className="Card">

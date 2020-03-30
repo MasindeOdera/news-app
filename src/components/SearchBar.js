@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchNews, searchNews, setLoading} from '../actions/postActions';
+import { fetchNews, searchNews} from '../actions/postActions';
 import '../App.css';
 
 class SearchBar extends Component {
@@ -15,7 +15,6 @@ class SearchBar extends Component {
     handleChange(e) {
         e.preventDefault();
         this.props.searchNews(e.target.value);
-        this.props.setLoading();
     }
     
     handleSubmit(e) {
@@ -50,11 +49,10 @@ class SearchBar extends Component {
 SearchBar.protoTypes = {
     fetchNews: PropTypes.func.isRequired,
     searchNews: PropTypes.func.isRequired,
-    setLoading: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
     query: state.news.query,
 });
 
-export default connect(mapStateToProps, { fetchNews, searchNews, setLoading})(SearchBar);
+export default connect(mapStateToProps, { fetchNews, searchNews})(SearchBar);

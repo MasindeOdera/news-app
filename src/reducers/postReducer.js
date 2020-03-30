@@ -21,7 +21,7 @@ export default function (state = initialState, action) {
         case FETCH_NEWS:
             return {
                 ...state,
-                items: state.items,
+                items: action.payload,
                 query: state.query,
                 loading: false,
                 id: state.items.id,

@@ -16,8 +16,6 @@ class News extends Component {
     }
 
     UNSAFE_componentWillMount() {
-        // this.props.showNews();
-        // this.setState({news: this.props.articles});
         this.props.setLoading();
     }
 
@@ -27,8 +25,7 @@ class News extends Component {
     }
 
     render() {
-        const {loading} = this.props;
-        const {news} = this.props;
+        const {loading, news} = this.props;
         let content = '';
 
         content = news.length > 0 ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
