@@ -1,4 +1,4 @@
-import { SHOW_NEWS, FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE } from './types';
+import { SHOW_NEWS, FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING } from './types';
 
 //Created currentDate to be able to still get the latest data with my developer's plan at News API.
 let zero = "0";
@@ -52,3 +52,9 @@ export const fetchArticle = article => dispatch => {
         payload: article
     })
 };
+
+export const setLoading = () => {
+    return {
+        type: LOADING
+    }
+}

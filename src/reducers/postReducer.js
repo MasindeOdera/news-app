@@ -1,4 +1,4 @@
-import { SHOW_NEWS, FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE } from '../actions/types';
+import { SHOW_NEWS, FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING } from '../actions/types';
 
 const initialState = {
     query: '',
@@ -37,6 +37,11 @@ export default function (state = initialState, action) {
                 ...state,
                 query: action.payload,
                 loading: false 
+            };
+        case LOADING:
+            return {
+                ...state,
+                loading: true 
             };
         default:
             return state;

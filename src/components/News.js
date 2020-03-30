@@ -3,7 +3,7 @@ import NewsCard from './NewsCard';
 import Spinner from './Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { showNews } from '../actions/postActions';
+import { showNews, setLoading } from '../actions/postActions';
 import {HashRouter as Router} from 'react-router-dom';
 import '../App.css';
 
@@ -16,6 +16,12 @@ class News extends Component {
     }
 
     UNSAFE_componentWillMount() {
+        // this.props.showNews();
+        // this.setState({news: this.props.articles});
+        this.props.setLoading();
+    }
+
+    componentDidMount() {
         this.props.showNews();
         this.setState({news: this.props.articles});
     }
@@ -51,6 +57,7 @@ const articleStyle = {
 
 News.prototypes = {
     showNews: PropTypes.func.isRequired,
+    setLoading: PropTypes.func.isRequired,
     news: PropTypes.array.isRequired
 }
 
@@ -59,4 +66,4 @@ const mapStateToProps = state => ({
     loading: state.news.loading,
 });
 
-export default connect(mapStateToProps, { showNews })(News);
+export default connect(mapStateToProps, { showNews, setLoading })(News);
