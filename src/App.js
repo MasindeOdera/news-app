@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import {HashRouter as Router, Route} from 'react-router-dom';
 
 import store from './store';
-// import { Article } from './components/Article';
 
 class App extends Component {
   render() {

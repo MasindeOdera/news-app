@@ -27,6 +27,7 @@ export class Article extends Component {
         };
         
         const test = b(idToSearch);
+        this.props.setLoading();
         this.props.fetchArticle(test[0]);
         this.setState({article: test[0]});
     }
@@ -34,14 +35,17 @@ export class Article extends Component {
     render() {
         const {article, loading} = this.props;
         console.log(this.props);
-        let articleInfo = (<React.Fragment><div style={border} className="Card">
-        <div style={clearfix}>
-        <img src={article.urlToImage} alt="img" style={articleImage} />
-        <h3>{article.title}</h3>
-        <h4 style={articleAuthor}>- {article.author}</h4>
-        <p style={articleContent}>{article.content}</p>
-        </div>
-        </div></React.Fragment>);
+        let articleInfo = (
+            <React.Fragment>
+                <div style={border} className="Card">
+                    <div style={clearfix}>
+                        <img src={article.urlToImage} alt="img" style={articleImage} />
+                        <h3>{article.title}</h3>
+                        <h4 style={articleAuthor}>- {article.author}</h4>
+                        <p style={articleContent}>{article.content}</p>
+                    </div>
+                </div>
+            </React.Fragment>);
         let content = loading ? <Spinner /> : articleInfo;
 
         return (
