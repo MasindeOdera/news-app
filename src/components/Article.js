@@ -36,7 +36,6 @@ export class Article extends Component {
 
     render() {
         const {article, loading} = this.props;
-        console.log(this.props);
 
         function openTab() {
             window.open(article.url);
@@ -84,7 +83,6 @@ const clearfix = {
     textTransform: 'capitalize',
     fontSize: '1.1rem',
     textAlign: 'left',
-    // height: '310px',
     padding: '0.2rem',
     marginTop: '-20px',
     height: 'inherit',
