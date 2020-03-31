@@ -51,7 +51,7 @@ export class Article extends Component {
                         <h3>{article.title}</h3>
                         <h4 style={articleAuthor}>- {article.author}</h4>
                         <p style={articleContent}>{article.content}</p>
-                        <Link onClick={openTab}>
+                        <Link to={"/"} onClick={openTab}>
                             <input 
                                 type="submit" 
                                 value="Original Article" 
