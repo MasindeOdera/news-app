@@ -44,6 +44,7 @@ export class Article extends Component {
 
         let articleInfo = (
             <React.Fragment>
+                <Link  to={"/"}><span>Back</span></Link>
                 <div style={border} className="Card">
                     <div style={clearfix}>
                         <img src={article.urlToImage} alt="img" style={articleImage} />

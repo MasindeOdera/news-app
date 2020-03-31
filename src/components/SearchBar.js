@@ -7,7 +7,7 @@ import '../App.css';
 class SearchBar extends Component {
     constructor(props) {
         super(props)
-        this.state = { query: this.query};
+        this.state = { query: this.query, article: this.props.article};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -24,7 +24,7 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <form style={{ display: 'flex' }} onSubmit={this.handleSubmit}>
                     <input 
                         type="text" 
@@ -41,7 +41,7 @@ class SearchBar extends Component {
                         style={{flex: '1'}}
                     />
                 </form>
-            </div>
+            </React.Fragment>
         )
     }
 }
