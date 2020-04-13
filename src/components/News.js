@@ -3,7 +3,7 @@ import NewsCard from './NewsCard';
 import Spinner from './Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { showNews, setLoading, assignID } from '../actions/postActions';
+import { showNews, setLoading, assignID } from '../actions/newsActions';
 import {HashRouter as Router} from 'react-router-dom';
 import '../App.css';
 // import { v4 as uuidv4 } from 'uuid';

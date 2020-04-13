@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Spinner from './Spinner';
 import { connect } from 'react-redux';
-import { fetchArticle, setLoading } from '../actions/postActions';
+import { fetchArticle, setLoading } from '../actions/newsActions';
 import PropTypes from 'prop-types';
 import '../App.css';
 import { Link } from 'react-router-dom';
