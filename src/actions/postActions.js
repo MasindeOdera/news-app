@@ -1,6 +1,7 @@
-import { SHOW_NEWS, FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING } from './types';
+import { SHOW_NEWS, FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID } from './types';
 
-//Created currentDate to be able to still get the latest data with my developer's plan at News API.
+//Created currentDate to get the latest data with my developer's plan at News API.
+//The developer plan will not fetch data too far in the past. 
 let zero = "0";
 let d = new Date();
 let year = d.getFullYear().toString();
@@ -57,4 +58,11 @@ export const setLoading = () => {
     return {
         type: LOADING
     }
-}
+};
+
+export const assignID = id => dispatch => {
+    dispatch({
+        type: ASSIGN_ID,
+        payload: id
+    })
+};

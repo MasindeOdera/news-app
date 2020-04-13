@@ -23,7 +23,6 @@ class SearchBar extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <React.Fragment>
                 <form style={{ display: 'flex' }} onSubmit={this.handleSubmit}>

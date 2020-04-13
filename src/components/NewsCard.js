@@ -3,16 +3,39 @@ import {Link} from 'react-router-dom';
 // import News from './News';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
-// import { showNews } from '../actions/postActions';
+// import { setLoading, showNews } from '../actions/postActions';
+import { v4 as uuidv4 } from 'uuid';
 
 export class NewsCard extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = { 
+    //         article: this.props.article,
+    //     };
+    // }
+
+    // UNSAFE_componentWillMount() {
+    //     this.props.setLoading();
+    // }
+
+    // componentDidMount() {
+    //     this.props.showNews();
+    //     this.props.assignID(this.props.news.id);
+    //     this.setState({article: this.props.article});
+    //     console.log("article", this.props.article);
+    // }
+    componentDidMount() {
+        this.props.article.source.id = uuidv4();
+        // console.log("componentDidMount", this.props.article);
+    }
+
     render() {
         const {article} = this.props;
 
         return (
-            <div style={articleStyle}>
+            <div style={articleStyle} key={uuidv4}>
                 <div style={border} className="Card">
-                    <Link to={"/news/" + article.title}>
+                    <Link to={"/news/" + article.title }>
                         <div style={clearfix}>
                         <img src={article.urlToImage} alt="img" style={articleImage} />
                         <h3 style={{fontSize: '0.86rem',}}>{article.title}</h3>
@@ -75,12 +98,15 @@ const articleDescriton = {
 
 // NewsCard.prototypes = {
 //     showNews: PropTypes.func.isRequired,
+//     setLoading: PropTypes.func.isRequired,
 //     news: PropTypes.array.isRequired
 // }
 
 // const mapStateToProps = state => ({
 //     news: state.news.items,
+//     article: state.news.article,
+//     // article: state.news.items.article,
 // });
 
-// export default connect(mapStateToProps, { showNews })(NewsCard);
+// export default connect(mapStateToProps, { setLoading, showNews })(NewsCard);
 export default NewsCard;
