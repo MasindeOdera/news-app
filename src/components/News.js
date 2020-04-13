@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewsCard from './NewsCard';
 import Spinner from './Spinner';
+import ResultNotFound from './ResultNotFound';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { showNews, setLoading, assignID } from '../actions/newsActions';
@@ -41,7 +42,7 @@ class News extends Component {
         // ids.push(Object.keys(news));
         // console.log(this.props.id);
 
-        content = news.length > 0 ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
+        content = news.length > 0 ? news.map((article, index) => <NewsCard key={index} article={article} />) : <ResultNotFound /> ;
 
         return (
             <Router>
