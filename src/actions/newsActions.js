@@ -16,7 +16,7 @@ let currentDate = year.concat("-",month,"-",date,"&");
 export const showNews = () => dispatch => {
     let query = 'Apple&';
 
-    let url = `https://newsapi.org/v2/everything?q=${query}from=${currentDate}sortBy=popularity&apiKey=cc9b54067d074fc88253847971a703eb`;
+    let url = `https://newsapi.org/v2/everything?q=${query}from=${currentDate}sortBy=popularity&apiKey=9b942d5f77b34e51aac3d8975148928a`;
     const req = new Request(url);
     fetch(req)
         .then(res => res.json())
@@ -37,7 +37,7 @@ export const searchNews = query => dispatch => {
 export const fetchNews = query => dispatch => {
     let search = (query.toLowerCase() + "&");
 
-    let url = (`https://newsapi.org/v2/everything?q=${search}from=${currentDate}sortBy=popularity&apiKey=cc9b54067d074fc88253847971a703eb`);
+    let url = (`https://newsapi.org/v2/everything?q=${search}from=${currentDate}sortBy=popularity&apiKey=9b942d5f77b34e51aac3d8975148928a`);
     const req = new Request(url);
     fetch(req)
         .then(res => res.json())
