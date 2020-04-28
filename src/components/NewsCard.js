@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+// import Spinner from './Spinner';
 // import News from './News';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
-// import { setLoading, showNews } from '../actions/postActions';
-import { v4 as uuidv4 } from 'uuid';
+// import { setLoading, updateArticles, showNews } from '../actions/newsActions';
+// import { setLoading } from '../actions/newsActions';
+// import { v4 as uuidv4 } from 'uuid';
 
 export class NewsCard extends Component {
     // constructor(props) {
     //     super(props);
     //     this.state = { 
-    //         article: this.props.article,
+    //         article: this.props.news.article,
+    //         // id: this.props.id,
     //     };
     // }
 
@@ -25,26 +28,35 @@ export class NewsCard extends Component {
     //     console.log("article", this.props.article);
     // }
     componentDidMount() {
-        this.props.article.source.id = uuidv4();
-        // console.log("componentDidMount", this.props.article);
+        // this.props.article.source.id = uuidv4();
+        // this.setState({article: this.props.article});
     }
 
     render() {
         const {article} = this.props;
+        console.log(this.props);
+        // console.log("this.props.news.article: ", this.props.news.article);
+        // console.log("this.state.news.article: ", this.state.news.article);
+
+        // let address = encodeURI(article.title.trim());
+
+        let info = (<div style={articleStyle}>
+                        <div style={border} className="Card">
+                            <Link to={"/news/" + article.title }>
+                                <div style={clearfix}>
+                                <img src={article.urlToImage} alt="img" style={articleImage} />
+                                <h3 style={{fontSize: '0.86rem',}}>{article.title}</h3>
+                                <h4 style={articleAuthor}>- {article.author}</h4>
+                                <p style={articleDescriton}>{article.description}</p>
+                                </div>
+                            </Link>
+                        </div>
+                    </div>);
 
         return (
-            <div style={articleStyle} key={uuidv4}>
-                <div style={border} className="Card">
-                    <Link to={"/news/" + article.title }>
-                        <div style={clearfix}>
-                        <img src={article.urlToImage} alt="img" style={articleImage} />
-                        <h3 style={{fontSize: '0.86rem',}}>{article.title}</h3>
-                        <h4 style={articleAuthor}>- {article.author}</h4>
-                        <p style={articleDescriton}>{article.description}</p>
-                        </div>
-                    </Link>
-                </div>
-            </div>
+            <React.Fragment>
+                {info}
+            </React.Fragment>
         )
     }
 }
@@ -97,7 +109,8 @@ const articleDescriton = {
 }
 
 // NewsCard.prototypes = {
-//     showNews: PropTypes.func.isRequired,
+//     updateArticles: PropTypes.func.isRequired,
+//     // showNews: PropTypes.func.isRequired,
 //     setLoading: PropTypes.func.isRequired,
 //     news: PropTypes.array.isRequired
 // }
@@ -108,5 +121,5 @@ const articleDescriton = {
 //     // article: state.news.items.article,
 // });
 
-// export default connect(mapStateToProps, { setLoading, showNews })(NewsCard);
+// export default connect(mapStateToProps, { setLoading })(NewsCard);
 export default NewsCard;

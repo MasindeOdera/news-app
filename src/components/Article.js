@@ -20,6 +20,7 @@ export class Article extends Component {
 
     componentDidMount() {
         let a = this.props.news;
+        console.log(this.props.news);
         let idToSearch = this.props.match.params.id;
           
         function b(idToSearch) {
@@ -41,6 +42,8 @@ export class Article extends Component {
     render() {
         const {loading} = this.props;
         const {article} = this.state;
+        console.log("this.state: ", this.state);
+        console.log("this.props: ", this.props);
 
         function openTab() {
             window.open(article.url);

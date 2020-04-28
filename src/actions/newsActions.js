@@ -1,4 +1,4 @@
-import { SHOW_NEWS, FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID } from './types';
+import { SHOW_NEWS, FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID, UPDATE_ARTICLES, FETCH_QUERY } from './types';
 
 //Created currentDate to get the latest data with my developer's plan at News API.
 //The developer plan will not fetch data too far in the past. 
@@ -35,7 +35,7 @@ export const searchNews = query => dispatch => {
 };
 
 export const fetchNews = query => dispatch => {
-    let search = (query.toLowerCase() + "&");
+    let search = (encodeURI(query.toLowerCase().trim()) + "&");
 
     let url = (`https://newsapi.org/v2/everything?q=${search}from=${currentDate}sortBy=popularity&apiKey=9b942d5f77b34e51aac3d8975148928a`);
     const req = new Request(url);
@@ -65,4 +65,18 @@ export const assignID = id => dispatch => {
         type: ASSIGN_ID,
         payload: id
     })
+};
+
+export const updateArticles = items => dispatch => {
+    dispatch({
+        type: UPDATE_ARTICLES,
+        payload: items
+    })
+};
+
+export const fetchQuery = query => {
+    return {
+        type: FETCH_QUERY,
+        payload: query
+    }
 };
