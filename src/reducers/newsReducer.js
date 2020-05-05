@@ -5,7 +5,7 @@ const initialState = {
     items: [],
     item: {},
     article: [],
-    loading: true,
+    loading: false,
     id: [],
 }
 
@@ -24,24 +24,24 @@ export default function (state = initialState, action) {
                 items: action.payload,
                 query: state.query,
                 loading: false,
-                id: state.id
+                id: state.id,
             };
         case FETCH_ARTICLE:
             return {
                 ...state,
                 article: action.payload,
-                loading: false 
+                loading: false,
             };
         case SEARCH_NEWS:
             return {
                 ...state,
                 query: action.payload,
-                loading: false 
+                loading: false,
             };
         case LOADING:
             return {
                 ...state,
-                loading: true 
+                loading: true,
             };
         case ASSIGN_ID:
             return {
@@ -53,12 +53,12 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 items: action.payload,
-                loading: false 
+                loading: false, 
             };
         case FETCH_QUERY:
             return {
                 ...state,
-                query: action.payload
+                query: action.payload,
             };
         default:
             return state;

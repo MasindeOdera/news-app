@@ -35,9 +35,6 @@ export class NewsCard extends Component {
 
     render() {
         const {article} = this.props;
-        console.log(this.props);
-        // console.log("this.props.news.article: ", this.props.news.article);
-        // console.log("this.state.news.article: ", this.state.news.article);
 
         // let address = encodeURI(article.title.trim());
 

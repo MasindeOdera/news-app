@@ -42,8 +42,6 @@ export class Article extends Component {
     render() {
         const {loading} = this.props;
         const {article} = this.state;
-        console.log("this.state: ", this.state);
-        console.log("this.props: ", this.props);
 
         function openTab() {
             window.open(article.url);
