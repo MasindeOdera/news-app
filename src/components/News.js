@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NewsCard from './NewsCard';
 import Spinner from './Spinner';
-// import ResultNotFound from './ResultNotFound';
+import ResultNotFound from './ResultNotFound';
 import FakeNews from './FakeNews';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -39,6 +39,7 @@ class News extends Component {
 
     render() {
         const { news, query, loading } = this.props;
+        // console.log(this.props);
         
         let content = '';
         // let ids = [];
@@ -54,6 +55,7 @@ class News extends Component {
         content = news.length > 0 ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
         // const notFound = this.props.query.length > 0 && this.props.query !== undefined ? <ResultNotFound /> : null;
         // const notFound = this.props.query.length > 0 && this.props.news.length === 0 ? <ResultNotFound /> : null;
+        const notFound = news.length === 0 && !loading && query.length > 0 ? <ResultNotFound /> : null;
 
         return (
             <Router>
@@ -63,6 +65,7 @@ class News extends Component {
                         {/* The Spinner is only visible when loading is true */}
                         {loading ? <Spinner /> : null}
                         { content }
+                        { notFound }
                     </div>
                 </div>
             </Router>
