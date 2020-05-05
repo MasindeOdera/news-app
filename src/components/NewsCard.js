@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+
 // import Spinner from './Spinner';
 // import News from './News';
 // import PropTypes from 'prop-types';
@@ -64,16 +65,15 @@ export class NewsCard extends Component {
 const articleStyle = {
     color: '#000',
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(8rem, 1fr))',
     gridGap: '1rem',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 'auto',
+    marginTop: '10px',
 }
 
 const border = {
-    padding: '1.2rem 10px',
-    marginTop: '20px',
+    padding: '0rem 0px',
 }
 
 const clearfix = {
@@ -83,8 +83,8 @@ const clearfix = {
     fontSize: '1.1rem',
     textAlign: 'left',
     height: '310px',
-    padding: '0.2rem',
-    marginTop: '-20px',
+    marginTop: '0px',
+    backgroundColor: '#d9d9d9',
 }
 
 const articleImage = {
@@ -99,6 +99,7 @@ const articleAuthor = {
     width: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    fontSize: '0.96rem',
 }
 
 const articleDescriton = {
@@ -106,6 +107,7 @@ const articleDescriton = {
     width: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    fontSize: '0.86rem',
 }
 
 // NewsCard.prototypes = {

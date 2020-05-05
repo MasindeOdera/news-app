@@ -35,6 +35,7 @@ class SearchBar extends Component {
                         style={{flex: '10', padding: '5px'}}
                         value = {this.state.search}
                         onChange = {this.handleChange}
+                        autoComplete="off"
                     />
                     <input
                         type="submit"
