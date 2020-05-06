@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import placeholder from '../images/placeholder.png';
 
 // import Spinner from './Spinner';
 // import News from './News';
@@ -35,17 +36,38 @@ export class NewsCard extends Component {
 
     render() {
         const {article} = this.props;
-
         // let address = encodeURI(article.title.trim());
 
-        let info = (<div style={articleStyle}>
+        //If there is no data provided, then a placeholder should be provided.
+        let image = article.urlToImage === null ? placeholder : article.urlToImage;
+        //When no author is returned with the data, it can either come back as an empty strng or null
+        let author;
+        if(article.author === null)
+            author = "Unknown";
+        else
+            author = article.author.length > 0 ? article.author : "Unknown";
+
+        let title;
+        if(article.title === null)
+            title = "Unknown";
+        else
+            title = article.title.length > 0 ? article.title : "Unknown";
+
+        let description;
+        if(article.description === null)
+            description = "Unknown";
+        else
+            description = article.description.length > 0 ? article.description : "Unknown";
+
+
+        const info = (<div style={articleStyle}>
                         <div style={border} className="Card">
                             <Link to={"/news/" + article.title }>
                                 <div style={clearfix}>
-                                <img src={article.urlToImage} alt="img" style={articleImage} />
-                                <h3 style={{fontSize: '0.86rem',}}>{article.title}</h3>
-                                <h4 style={articleAuthor}>- {article.author}</h4>
-                                <p style={articleDescriton}>{article.description}</p>
+                                <img src={image} alt="img" style={articleImage} />
+                                <h3 style={{fontSize: '0.86rem',}}>{title}</h3>
+                                <h4 style={articleAuthor}>Author: {author}</h4>
+                                <p style={articleDescriton}>{description}</p>
                                 </div>
                             </Link>
                         </div>
@@ -66,7 +88,7 @@ const articleStyle = {
     gridGap: '1rem',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '10px',
+    marginTop: '20px',
 }
 
 const border = {
