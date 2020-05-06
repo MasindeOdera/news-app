@@ -53,8 +53,6 @@ class News extends Component {
         const intro = news.length === 0 && !loading && query.length === 0 ? <FakeNews /> : null;
 
         content = news.length > 0 && !loading ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
-        // const notFound = this.props.query.length > 0 && this.props.query !== undefined ? <ResultNotFound /> : null;
-        // const notFound = this.props.query.length > 0 && this.props.news.length === 0 ? <ResultNotFound /> : null;
         const notFound = news.length === 0 && !loading && query.length > 0 ? <ResultNotFound /> : null;
 
         return (

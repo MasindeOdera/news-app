@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import placeholder from '../images/placeholder.png';
-
 // import Spinner from './Spinner';
-// import News from './News';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 // import { setLoading, updateArticles, showNews } from '../actions/newsActions';
@@ -17,10 +15,6 @@ export class NewsCard extends Component {
     //         article: this.props.news.article,
     //         // id: this.props.id,
     //     };
-    // }
-
-    // UNSAFE_componentWillMount() {
-    //     this.props.setLoading();
     // }
 
     // componentDidMount() {
@@ -65,7 +59,7 @@ export class NewsCard extends Component {
                             <Link to={"/news/" + article.title }>
                                 <div style={clearfix}>
                                 <img src={image} alt="img" style={articleImage} />
-                                <h3 style={{fontSize: '0.86rem',}}>{title}</h3>
+                                <h3 style={{fontSize: '0.86rem', marginLeft: '4px',}}>{title}</h3>
                                 <h4 style={articleAuthor}>Author: {author}</h4>
                                 <p style={articleDescriton}>{description}</p>
                                 </div>
@@ -113,7 +107,7 @@ const articleImage = {
 }
 
 const articleAuthor = {
-    margin: '2px',
+    margin: '2px 4px 0px 4px',
     whiteSpace: 'nowrap',
     width: '100%',
     overflow: 'hidden',
@@ -127,6 +121,7 @@ const articleDescriton = {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     fontSize: '0.86rem',
+    margin: '0px 4px 0px 4px',
 }
 
 // NewsCard.prototypes = {
