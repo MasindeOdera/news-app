@@ -43,15 +43,15 @@ export class NewsCard extends Component {
 
         let title;
         if(article.title === null)
-            title = "Unknown";
+            title = "Missing";
         else
-            title = article.title.length > 0 ? article.title : "Unknown";
+            title = article.title.length > 0 ? article.title : "Missing";
 
         let description;
         if(article.description === null)
-            description = "Unknown";
+            description = "No description provided";
         else
-            description = article.description.length > 0 ? article.description : "Unknown";
+            description = article.description.length > 0 ? article.description : "No description provided";
 
 
         const info = (<div style={articleStyle}>
