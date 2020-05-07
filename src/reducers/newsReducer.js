@@ -1,4 +1,4 @@
-import { SHOW_NEWS, FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID, UPDATE_ARTICLES, FETCH_QUERY } from '../actions/types';
+import { FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID, UPDATE_ARTICLES, FETCH_QUERY } from '../actions/types';
 
 const initialState = {
     query: '',
@@ -13,13 +13,6 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch(action.type) {
-        case SHOW_NEWS:
-            return {
-                ...state,
-                items: action.payload,
-                loading: false,
-                id: state.id
-            };
         case FETCH_NEWS:
             return {
                 ...state,

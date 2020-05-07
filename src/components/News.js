@@ -29,7 +29,6 @@ class News extends Component {
     }
 
     componentDidMount() {
-        // this.props.showNews();
         // this.props.assignID(this.props.news.id);
         // this.props.setLoading();
         this.setState({news: this.props.articles});

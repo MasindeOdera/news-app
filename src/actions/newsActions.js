@@ -1,4 +1,4 @@
-import { SHOW_NEWS, FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID, UPDATE_ARTICLES, FETCH_QUERY } from './types';
+import { FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID, UPDATE_ARTICLES, FETCH_QUERY } from './types';
 
 //Created currentDate to get the latest data with my developer's plan at News API.
 //The developer plan will not fetch data too far in the past. 
@@ -12,20 +12,6 @@ let month = (initialMonth.length > 1) ? zero.concat(initialMonth) : initialMonth
 let date = (initialDay.length > 1) ? zero.concat(initialDay) : initialDay;
 
 let currentDate = year.concat("-",month,"-",date,"&");
-
-export const showNews = () => dispatch => {
-    let query = 'Apple&';
-
-    let url = `https://newsapi.org/v2/everything?q=${query}from=${currentDate}sortBy=popularity&apiKey=9b942d5f77b34e51aac3d8975148928a`;
-    const req = new Request(url);
-    fetch(req)
-        .then(res => res.json())
-        .then(news => dispatch({
-            type: SHOW_NEWS,
-            payload: news.articles,
-            query: query
-        })).then(articles => console.log(articles));
-};
 
 export const searchNews = query => dispatch => {
     dispatch({
