@@ -20,6 +20,7 @@ class News extends Component {
             query: this.query,
             loading: this.props.loading,
             error: this.props.error,
+            totalResults: this.props.totalResults,
         };
     }
 
@@ -39,7 +40,8 @@ class News extends Component {
     }
 
     render() {
-        const { news, query, loading, error } = this.props;
+        const { news, query, loading, error, totalResults } = this.props;
+        // console.log(this.props);
         
         let content = '';
         // let ids = [];
@@ -54,7 +56,8 @@ class News extends Component {
 
         content = news && !loading ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
         
-        const notFound = error === "ok" && !loading && query.length > 0 ? <ResultNotFound /> : null;
+        // const notFound = error === "ok" && news && !loading && query.length > 0 ? <ResultNotFound /> : null;
+        const notFound = error === "ok" && totalResults === 0 && !loading && query.length > 0 ? <ResultNotFound /> : null;
 
         return (
             <Router>
@@ -98,6 +101,7 @@ const mapStateToProps = state => ({
     loading: state.news.loading,
     query: state.news.query,
     error: state.news.error,
+    totalResults: state.news.totalResults,
 });
 
 export default connect(mapStateToProps, { setLoading, assignID, fetchQuery })(News);
