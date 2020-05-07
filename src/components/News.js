@@ -41,7 +41,6 @@ class News extends Component {
 
     render() {
         const { news, query, loading, error, totalResults } = this.props;
-        // console.log(this.props);
         
         let content = '';
         // let ids = [];
@@ -56,7 +55,6 @@ class News extends Component {
 
         content = news && !loading ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
         
-        // const notFound = error === "ok" && news && !loading && query.length > 0 ? <ResultNotFound /> : null;
         const notFound = error === "ok" && totalResults === 0 && !loading && query.length > 0 ? <ResultNotFound /> : null;
 
         return (

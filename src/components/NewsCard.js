@@ -28,6 +28,11 @@ export class NewsCard extends Component {
         // this.setState({article: this.props.article});
     }
 
+    //If the image is not provided, make sure that the placeholder is there.
+    addDefaultSrc(ev){
+        ev.target.src = placeholder;
+    }
+
     render() {
         const {article} = this.props;
         // let address = encodeURI(article.title.trim());
@@ -59,7 +64,7 @@ export class NewsCard extends Component {
                         <div style={border} className="Card">
                             <Link to={"/news/" + article.title }>
                                 <div style={clearfix}>
-                                <img src={image} alt="img" style={articleImage} />
+                                <img src={image} onError={this.addDefaultSrc}  alt="img" style={articleImage} />
                                 <h3 style={{fontSize: '0.86rem', marginLeft: '4px',}}>{title}</h3>
                                 <h4 style={articleAuthor}>Author: {author}</h4>
                                 <p style={articleDescriton}>{description}</p>
