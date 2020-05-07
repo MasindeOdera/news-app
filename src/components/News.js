@@ -19,6 +19,7 @@ class News extends Component {
             landing: this.props.landing,
             query: this.query,
             loading: this.props.loading,
+            error: this.props.error,
         };
     }
 
@@ -38,8 +39,7 @@ class News extends Component {
     }
 
     render() {
-        const { news, query, loading } = this.props;
-        // console.log(this.props);
+        const { news, query, loading, error } = this.props;
         
         let content = '';
         // let ids = [];
@@ -50,10 +50,11 @@ class News extends Component {
         // console.log("News.js Object.keys(news): ", Object.keys(news));
         // console.log("News.js this.props: ", this.props);
         // ids.push(Object.keys(news));
-        const intro = news.length === 0 && !loading && query.length === 0 ? <FakeNews /> : null;
+        const intro = news !== null && !loading && query === "" ? <FakeNews /> : null;
 
-        content = news.length > 0 && !loading ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
-        const notFound = news.length === 0 && !loading && query.length > 0 ? <ResultNotFound /> : null;
+        content = news && !loading ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
+        
+        const notFound = error === "ok" && !loading && query.length > 0 ? <ResultNotFound /> : null;
 
         return (
             <Router>
@@ -86,7 +87,8 @@ News.prototypes = {
     assignID: PropTypes.func.isRequired,
     fetchQuery: PropTypes.func.isRequired,
     news: PropTypes.array.isRequired,
-    id: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    error: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -95,6 +97,7 @@ const mapStateToProps = state => ({
     id: state.id,
     loading: state.news.loading,
     query: state.news.query,
+    error: state.news.error,
 });
 
 export default connect(mapStateToProps, { setLoading, assignID, fetchQuery })(News);

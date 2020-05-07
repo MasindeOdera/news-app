@@ -44,6 +44,7 @@ export const fetchNews = query => dispatch => {
         .then(news => dispatch({
             type: FETCH_NEWS,
             payload: news.articles,
+            error: news,
         })).then(news => console.log(news));
 };
 

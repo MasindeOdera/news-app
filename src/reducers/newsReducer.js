@@ -3,6 +3,7 @@ import { SHOW_NEWS, FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID, 
 const initialState = {
     query: '',
     items: [],
+    error: '',
     item: {},
     article: [],
     loading: false,
@@ -22,6 +23,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 items: action.payload,
+                error: action.error.status,
                 query: state.query,
                 loading: false,
                 id: state.id,

@@ -31,6 +31,7 @@ export class NewsCard extends Component {
     render() {
         const {article} = this.props;
         // let address = encodeURI(article.title.trim());
+        // console.log(article.urlToImage);
 
         //If there is no data provided, then a placeholder should be provided.
         let image = article.urlToImage === null ? placeholder : article.urlToImage;
