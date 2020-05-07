@@ -4,7 +4,7 @@ import placeholder from '../images/placeholder.png';
 // import Spinner from './Spinner';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
-// import { setLoading, updateArticles, showNews } from '../actions/newsActions';
+// import { setLoading, showNews } from '../actions/newsActions';
 // import { setLoading } from '../actions/newsActions';
 // import { v4 as uuidv4 } from 'uuid';
 
@@ -36,7 +36,6 @@ export class NewsCard extends Component {
     render() {
         const {article} = this.props;
         // let address = encodeURI(article.title.trim());
-        // console.log(article.urlToImage);
 
         //If there is no data provided, then a placeholder should be provided.
         let image = article.urlToImage === null ? placeholder : article.urlToImage;
@@ -131,7 +130,6 @@ const articleDescriton = {
 }
 
 // NewsCard.prototypes = {
-//     updateArticles: PropTypes.func.isRequired,
 //     // showNews: PropTypes.func.isRequired,
 //     setLoading: PropTypes.func.isRequired,
 //     news: PropTypes.array.isRequired
