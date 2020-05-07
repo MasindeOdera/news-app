@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/news-app/static/css/main.cbc98e20.chunk.css",
-    "main.js": "/news-app/static/js/main.eeaad4af.chunk.js",
-    "main.js.map": "/news-app/static/js/main.eeaad4af.chunk.js.map",
+    "main.js": "/news-app/static/js/main.e89bc6f0.chunk.js",
+    "main.js.map": "/news-app/static/js/main.e89bc6f0.chunk.js.map",
     "runtime-main.js": "/news-app/static/js/runtime-main.b8727c7a.js",
     "runtime-main.js.map": "/news-app/static/js/runtime-main.b8727c7a.js.map",
     "static/js/2.1eedc991.chunk.js": "/news-app/static/js/2.1eedc991.chunk.js",
     "static/js/2.1eedc991.chunk.js.map": "/news-app/static/js/2.1eedc991.chunk.js.map",
     "index.html": "/news-app/index.html",
-    "precache-manifest.fa73c14ed871aa73e6d525a93d1cd945.js": "/news-app/precache-manifest.fa73c14ed871aa73e6d525a93d1cd945.js",
+    "precache-manifest.5cdc9dc2ada9badeb40bc496acb5e997.js": "/news-app/precache-manifest.5cdc9dc2ada9badeb40bc496acb5e997.js",
     "service-worker.js": "/news-app/service-worker.js",
     "static/css/main.cbc98e20.chunk.css.map": "/news-app/static/css/main.cbc98e20.chunk.css.map",
     "static/js/2.1eedc991.chunk.js.LICENSE.txt": "/news-app/static/js/2.1eedc991.chunk.js.LICENSE.txt",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.b8727c7a.js",
     "static/js/2.1eedc991.chunk.js",
     "static/css/main.cbc98e20.chunk.css",
-    "static/js/main.eeaad4af.chunk.js"
+    "static/js/main.e89bc6f0.chunk.js"
   ]
 }
