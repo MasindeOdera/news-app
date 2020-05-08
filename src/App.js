@@ -14,8 +14,10 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <h2>Your News</h2>
-            <h4>You get what you search.</h4>
+            <header className="App-header">
+              <h2>Your News</h2>
+              <h4>You get what you search.</h4>
+            </header>
             <Route exact path="/" component={SearchBar} />
             <Route exact path="/" component={News} />
             <Route exact path="/news/:id" component={Article} />

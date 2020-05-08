@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setLoading, assignID, fetchQuery } from '../actions/newsActions';
 import {HashRouter as Router} from 'react-router-dom';
-import '../App.css';
+// import '../App.css';
 // import { v4 as uuidv4 } from 'uuid';
 
 class News extends Component {
@@ -40,19 +40,15 @@ class News extends Component {
     render() {
         const { news, query, loading, error, totalResults } = this.props;
         
-        let content = '';
+        // let content = '';
         // let ids = [];
         // news.forEach(function(item, index, array) {
         //     console.log(item, index, "item/index");
         //   });
-        // console.log("News.js news: ", news);
         // console.log("News.js Object.keys(news): ", Object.keys(news));
-        // console.log("News.js this.props: ", this.props);
         // ids.push(Object.keys(news));
         const intro = news !== null && !loading && query === "" ? <FakeNews /> : null;
-
-        content = news && !loading ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
-        
+        const content = news && !loading ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
         const notFound = error === "ok" && totalResults === 0 && !loading && query.length > 0 ? <ResultNotFound /> : null;
 
         return (

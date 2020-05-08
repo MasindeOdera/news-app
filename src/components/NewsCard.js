@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import placeholder from '../images/placeholder.png';
+import '../App.css';
 // import Spinner from './Spinner';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
@@ -35,7 +36,8 @@ export class NewsCard extends Component {
 
     render() {
         const {article} = this.props;
-        // let address = encodeURI(article.title.trim());
+        //Since article.title is being used in the path, it needs to be URI encoded: /news/address
+        let address = encodeURI(article.title.trim());
 
         //If there is no data provided, then a placeholder should be provided.
         let image = article.urlToImage === null ? placeholder : article.urlToImage;
@@ -61,7 +63,7 @@ export class NewsCard extends Component {
 
         const info = (<div style={articleStyle}>
                         <div style={border} className="Card">
-                            <Link to={"/news/" + article.title }>
+                            <Link to={"/news/" + address }>
                                 <div style={clearfix}>
                                 <img src={image} onError={this.addDefaultSrc}  alt="img" style={articleImage} />
                                 <h3 style={{fontSize: '0.86rem', marginLeft: '4px',}}>{title}</h3>
