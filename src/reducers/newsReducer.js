@@ -1,4 +1,4 @@
-import { FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID, FETCH_QUERY } from '../actions/types';
+import { FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID, FETCH_QUERY, UPDATE_TOTAL_COUNT, SET_CURRENT_PAGE } from '../actions/types';
 
 const initialState = {
     query: '',
@@ -9,6 +9,9 @@ const initialState = {
     article: [],
     loading: false,
     id: [],
+    totalCount: 0,
+    totalPages: 0,
+    currentPage: 1,
 }
 
 export default function (state = initialState, action) {
@@ -20,6 +23,7 @@ export default function (state = initialState, action) {
                 error: action.error.status,
                 totalResults: action.error.totalResults,
                 query: state.query,
+                currentPage: state.currentPage,
                 loading: false,
                 id: state.id,
             };
@@ -50,6 +54,16 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 query: action.payload,
+            };
+            case UPDATE_TOTAL_COUNT:
+            return {
+                ...state,
+                totalCount: action.payload,
+            };
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.payload,
             };
         default:
             return state;

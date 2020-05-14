@@ -1,4 +1,4 @@
-import { FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID, FETCH_QUERY } from './types';
+import { FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID, FETCH_QUERY, UPDATE_TOTAL_COUNT, SET_CURRENT_PAGE } from './types';
 
 //Created currentDate to get the latest data with my developer's plan at News API.
 //The developer plan will not fetch data too far in the past. 
@@ -20,10 +20,10 @@ export const searchNews = query => dispatch => {
     })
 };
 
-export const fetchNews = query => dispatch => {
+export const fetchNews = (currentPage, query) => dispatch => {
     let search = (encodeURI(query.toLowerCase().trim()) + "&");
 
-    let url = (`https://newsapi.org/v2/everything?q=${search}from=${currentDate}sortBy=popularity&apiKey=9b942d5f77b34e51aac3d8975148928a`);
+    let url = (`https://newsapi.org/v2/everything?q=${search}from=${currentDate}sortBy=popularity&pageSize=${12}&page=${currentPage}&apiKey=9b942d5f77b34e51aac3d8975148928a`);
     const req = new Request(url);
     fetch(req)
         .then(res => res.json())
@@ -58,5 +58,19 @@ export const fetchQuery = query => {
     return {
         type: FETCH_QUERY,
         payload: query
+    }
+};
+
+export const updateTotalCount = totalCount => {
+    return {
+        type: UPDATE_TOTAL_COUNT,
+        payload: totalCount
+    }
+};
+
+export const setCurrentPage = pageNumber => {
+    return {
+        type: SET_CURRENT_PAGE,
+        payload: pageNumber
     }
 };

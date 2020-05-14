@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import NewsCard from './NewsCard';
+import Pagination from "react-js-pagination";
 import Spinner from './Spinner';
 import ResultNotFound from './ResultNotFound';
 import FakeNews from './FakeNews';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setLoading, assignID, fetchQuery } from '../actions/newsActions';
+import { setLoading, assignID, fetchQuery, fetchNews, updateTotalCount, setCurrentPage } from '../actions/newsActions';
 import {HashRouter as Router} from 'react-router-dom';
-// import '../App.css';
 // import { v4 as uuidv4 } from 'uuid';
 
 class News extends Component {
@@ -21,6 +21,10 @@ class News extends Component {
             loading: this.props.loading,
             error: this.props.error,
             totalResults: this.props.totalResults,
+            totalCount: this.props.totalCount,
+            totalPages: this.props.totalPages,
+            currentPage: this.props.currentPage,
+            activePage: this.props.activePage,
         };
     }
 
@@ -35,10 +39,22 @@ class News extends Component {
         this.setState({landing: false});
         this.setState({query: this.props.query});
         this.props.fetchQuery(this.props.query);
+        this.setState({totalCount: this.props.totalCount});
+        this.props.updateTotalCount(this.props.totalCount);
     }
+
+    handlePageChange(pageNumber) {
+        //Navigate the user to the top of the page.
+        window.scrollTo(0, 0);
+        this.setState({activePage: pageNumber});
+        this.setState({currentPage: pageNumber});
+        this.props.setCurrentPage(pageNumber);
+        this.props.fetchNews(pageNumber, this.props.query);
+      }
 
     render() {
         const { news, query, loading, error, totalResults } = this.props;
+        // console.log(this.props);
         
         // let content = '';
         // let ids = [];
@@ -50,6 +66,14 @@ class News extends Component {
         const intro = news !== null && !loading && query === "" ? <FakeNews /> : null;
         const content = news && !loading ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
         const notFound = error === "ok" && totalResults === 0 && !loading && query.length > 0 ? <ResultNotFound /> : null;
+        const pagination = totalResults > 0 && !loading ? 
+        <Pagination
+            activePage={this.state.activePage}
+            itemsCountPerPage={12}
+            totalItemsCount={totalResults}
+            pageRangeDisplayed={5}
+            onChange={this.handlePageChange.bind(this)}
+        /> : null;
 
         return (
             <Router>
@@ -61,6 +85,7 @@ class News extends Component {
                         { content }
                         { notFound }
                     </div>
+                    { pagination }
                 </div>
             </Router>
         )
@@ -81,6 +106,9 @@ News.prototypes = {
     setLoading: PropTypes.func.isRequired,
     assignID: PropTypes.func.isRequired,
     fetchQuery: PropTypes.func.isRequired,
+    fetchNews: PropTypes.func.isRequired,
+    updateTotalCount: PropTypes.func.isRequired,
+    setCurrentPage: PropTypes.func.isRequired,
     news: PropTypes.array.isRequired,
     id: PropTypes.string.isRequired,
     error: PropTypes.string.isRequired
@@ -94,6 +122,7 @@ const mapStateToProps = state => ({
     query: state.news.query,
     error: state.news.error,
     totalResults: state.news.totalResults,
+    currentPage: state.news.currentPage,
 });
 
-export default connect(mapStateToProps, { setLoading, assignID, fetchQuery })(News);
+export default connect(mapStateToProps, { setLoading, assignID, fetchQuery, fetchNews, updateTotalCount, setCurrentPage })(News);

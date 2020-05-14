@@ -53,3 +53,36 @@
 a:link {
   text-decoration: none;
 }
+
+ul.pagination {
+  display: inline-flex;
+  list-style-type: none;
+  margin-top: 16px;
+  background-color: #d9d9df;
+  font-weight: bold;
+}
+
+ul.pagination li {
+  margin: 1px;
+  padding: 10px;
+  color: #3d3d41;
+}
+
+ul.pagination li a {
+  color: #000;
+}
+
+ul.pagination li.active a {
+  color: #d9d9df;
+}
+
+li.active {
+  background-color: #3d3d41;
+  margin: auto;
+  padding: 8px;
+  color: white;
+}
+
+li:hover {
+  background-color: #3d3d41;
+}

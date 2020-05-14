@@ -35,10 +35,6 @@ export class Article extends Component {
         this.setState({article: test[0]});
     }
 
-    componentDidUpdate() {
-        //seems to have the state here, so maybe ssave it in the store here.
-    }
-
     render() {
         const {loading} = this.props;
         const {article} = this.state;
