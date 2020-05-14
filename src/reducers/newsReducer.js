@@ -1,14 +1,15 @@
-import { FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID, FETCH_QUERY, UPDATE_TOTAL_COUNT, SET_CURRENT_PAGE } from '../actions/types';
+import { FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, FETCH_QUERY, UPDATE_TOTAL_COUNT, SET_CURRENT_PAGE } from '../actions/types';
 
 const initialState = {
     query: '',
     items: [],
     error: '',
+    errorCode:'',
+    errorMessage:'',
     totalResults: '',
     item: {},
     article: [],
     loading: false,
-    id: [],
     totalCount: 0,
     totalPages: 0,
     currentPage: 1,
@@ -21,11 +22,12 @@ export default function (state = initialState, action) {
                 ...state,
                 items: action.payload,
                 error: action.error.status,
+                errorCode: action.error.code,
+                errorMessage: action.error.message,
                 totalResults: action.error.totalResults,
                 query: state.query,
                 currentPage: state.currentPage,
                 loading: false,
-                id: state.id,
             };
         case FETCH_ARTICLE:
             return {
@@ -43,12 +45,6 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: true,
-            };
-        case ASSIGN_ID:
-            return {
-                ...state,
-                id: action.payload,
-                loading: false,
             };
         case FETCH_QUERY:
             return {

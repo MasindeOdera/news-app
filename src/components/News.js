@@ -6,9 +6,8 @@ import ResultNotFound from './ResultNotFound';
 import FakeNews from './FakeNews';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setLoading, assignID, fetchQuery, fetchNews, updateTotalCount, setCurrentPage } from '../actions/newsActions';
+import { setLoading, fetchQuery, fetchNews, updateTotalCount, setCurrentPage } from '../actions/newsActions';
 import {HashRouter as Router} from 'react-router-dom';
-// import { v4 as uuidv4 } from 'uuid';
 
 class News extends Component {
     constructor(props) {
@@ -20,6 +19,8 @@ class News extends Component {
             query: this.query,
             loading: this.props.loading,
             error: this.props.error,
+            errorCode: this.props.errorCode,
+            errorMessage: this.props.errorMessage,
             totalResults: this.props.totalResults,
             totalCount: this.props.totalCount,
             totalPages: this.props.totalPages,
@@ -33,12 +34,10 @@ class News extends Component {
     }
 
     componentDidMount() {
-        // this.props.assignID(this.props.news.id);
         this.setState({news: this.props.articles});
         this.setState({id: this.props.news.id});
         this.setState({landing: false});
         this.setState({query: this.props.query});
-        this.props.fetchQuery(this.props.query);
         this.setState({totalCount: this.props.totalCount});
         this.props.updateTotalCount(this.props.totalCount);
     }
@@ -53,16 +52,8 @@ class News extends Component {
       }
 
     render() {
-        const { news, query, loading, error, totalResults } = this.props;
-        // console.log(this.props);
+        const { news, query, loading, error, totalResults, errorCode, errorMessage } = this.props;
         
-        // let content = '';
-        // let ids = [];
-        // news.forEach(function(item, index, array) {
-        //     console.log(item, index, "item/index");
-        //   });
-        // console.log("News.js Object.keys(news): ", Object.keys(news));
-        // ids.push(Object.keys(news));
         const intro = news !== null && !loading && query === "" ? <FakeNews /> : null;
         const content = news && !loading ? news.map((article, index) => <NewsCard key={index} article={article} />) : null;
         const notFound = error === "ok" && totalResults === 0 && !loading && query.length > 0 ? <ResultNotFound /> : null;
@@ -86,6 +77,11 @@ class News extends Component {
                         { notFound }
                     </div>
                     { pagination }
+                    { errorCode === "maximumResultsReached" ? 
+                        <div>
+                            <h4>Please refresh page.</h4>
+                            <p>{errorMessage}</p>
+                        </div> : null }
                 </div>
             </Router>
         )
@@ -104,25 +100,23 @@ const articleStyle = {
 
 News.prototypes = {
     setLoading: PropTypes.func.isRequired,
-    assignID: PropTypes.func.isRequired,
     fetchQuery: PropTypes.func.isRequired,
     fetchNews: PropTypes.func.isRequired,
     updateTotalCount: PropTypes.func.isRequired,
     setCurrentPage: PropTypes.func.isRequired,
     news: PropTypes.array.isRequired,
-    id: PropTypes.string.isRequired,
     error: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => ({
     news: state.news.items,
-    // id: state.news.items.id,
-    id: state.id,
     loading: state.news.loading,
     query: state.news.query,
     error: state.news.error,
+    errorCode: state.news.errorCode,
+    errorMessage: state.news.errorMessage,
     totalResults: state.news.totalResults,
     currentPage: state.news.currentPage,
 });
 
-export default connect(mapStateToProps, { setLoading, assignID, fetchQuery, fetchNews, updateTotalCount, setCurrentPage })(News);
+export default connect(mapStateToProps, { setLoading, fetchQuery, fetchNews, updateTotalCount, setCurrentPage })(News);

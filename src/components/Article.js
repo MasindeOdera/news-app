@@ -20,7 +20,6 @@ export class Article extends Component {
 
     componentDidMount() {
         let a = this.props.news;
-        console.log(this.props.news);
         let idToSearch = this.props.match.params.id;
           
         function b(idToSearch) {

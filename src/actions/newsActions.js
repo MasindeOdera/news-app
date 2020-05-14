@@ -1,4 +1,4 @@
-import { FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, ASSIGN_ID, FETCH_QUERY, UPDATE_TOTAL_COUNT, SET_CURRENT_PAGE } from './types';
+import { FETCH_NEWS, SEARCH_NEWS, FETCH_ARTICLE, LOADING, FETCH_QUERY, UPDATE_TOTAL_COUNT, SET_CURRENT_PAGE } from './types';
 
 //Created currentDate to get the latest data with my developer's plan at News API.
 //The developer plan will not fetch data too far in the past. 
@@ -45,13 +45,6 @@ export const setLoading = () => {
     return {
         type: LOADING
     }
-};
-
-export const assignID = id => dispatch => {
-    dispatch({
-        type: ASSIGN_ID,
-        payload: id
-    })
 };
 
 export const fetchQuery = query => {
