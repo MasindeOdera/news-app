@@ -23,7 +23,7 @@ export const searchNews = query => dispatch => {
 export const fetchNews = (currentPage, query) => dispatch => {
     let search = (encodeURI(query.toLowerCase().trim()) + "&");
 
-    let url = (`https://newsapi.org/v2/everything?q=${search}from=${currentDate}sortBy=popularity&pageSize=${12}&page=${currentPage}&apiKey=9b942d5f77b34e51aac3d8975148928a`);
+    let url = (`http://newsapi.org/v2/everything?q=${search}from=${currentDate}sortBy=popularity&pageSize=${12}&page=${currentPage}&apiKey=9b942d5f77b34e51aac3d8975148928a`);
     const req = new Request(url);
     fetch(req)
         .then(res => res.json())
