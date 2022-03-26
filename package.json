@@ -10,7 +10,7 @@
     "acorn": "^7.1.1",
     "axios": "^0.19.2",
     "kind-of": "^6.0.3",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-js-pagination": "^3.0.3",
